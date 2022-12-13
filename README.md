@@ -1,6 +1,6 @@
-## Book storage project
+## Book storage app
 
-###Java application for quick book storage, update, access and total price calculation.
+### Java application for quick book storage, update, access and total price calculation.
 
 • A client can use a REST call to put a book into the system providing its name, author, barcode, quantity, price per unit.
 
