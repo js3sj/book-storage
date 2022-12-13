@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>list-result</title>
+</head>
+<body>
+<h3 th:text="${description}"></h3>
+
+<div th:switch="${resultList}">
+    <div th:case="*">
+        <table>
+            <tbody>
+            <div th:each="element : ${resultList}">
+                <tr th:text="${element}"></tr>
+            </div>
+            </tbody>
+        </table>
+    </div>
+    <p><h3>---</h3></p>
+    <p><a href="/backtoindex">Back to index</a></p>
+</div>
+</body>
+</html>

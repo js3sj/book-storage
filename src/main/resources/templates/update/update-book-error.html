@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>update-book-error</title>
+</head>
+<body>
+<h3 th:text="'FAILED TO UPDATE SELECTED BOOK: ' + ${error_message}" style="color: red"></h3>
+<p><h3>---</h3></p>
+<p><a th:href="@{/edit/{barcode}(barcode=${barcode})}">Back</a></p>
+</body>
+</html>

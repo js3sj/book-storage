@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>add-book-confirm</title>
+    <style>
+        th, td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h3>NEW BOOK SUCCESSFULLY ADDED:</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Barcode</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Release year</th>
+            <th>Science index</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${formAttribute.name}"></td>
+            <td th:text="${formAttribute.author}"></td>
+            <td th:text="${formAttribute.barcode}"></td>
+            <td th:text="${formAttribute.quantity}"></td>
+            <td th:text="${formAttribute.price}"></td>
+            <td th:text="${formAttribute?.releaseYear} ?:'---'"></td>
+            <td th:text="${formAttribute?.scienceIndex} ?:'---'"></td>
+            <td><a th:href="@{/edit/{barcode}(barcode=${formAttribute.barcode})}">Edit</a></td>
+            <td><a th:href="@{/delete/{barcode}(barcode=${formAttribute.barcode})}">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p><h3>---</h3></p>
+<p><a href="/addbookform">Add new book</a></p>
+<p><a href="/backtoindex">Back to index</a></p>
+</body>
+</html>

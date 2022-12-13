@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>add-book</title>
+    <style>
+        th, td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h3>ADD A NEW BOOK:</h3>
+<form action="#"
+      th:action="@{/addbook}"
+      th:object="${formAttribute}"
+      method="post">
+    <table>
+        <tbody>
+        <tr>
+            <td><label for="name">Name</label></td>
+            <td><input type="text" th:field="*{name}" id="name" placeholder="Name"></td>
+            <td><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><label for="author">Author</label></td>
+            <td><input type="text" th:field="*{author}" id="author" placeholder="Author"></td>
+            <td><span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><label for="barcode">Barcode</label></td>
+            <td><input type="number" th:field="*{barcode}" id="barcode" placeholder="Barcode"></td>
+            <td><span th:if="${#fields.hasErrors('barcode')}" th:errors="*{barcode}" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><label for="quantity">Quantity</label></td>
+            <td><input type="number" th:field="*{quantity}" id="quantity" placeholder="Quantity"></td>
+            <td><span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><label for="price">Price</label></td>
+            <td><input type="number" th:field="*{price}" id="price" placeholder="Price" step="0.01"></td>
+            <td><span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" style="color: red"></span></td>
+        </tr>
+        <tr>
+            <td><label for="releaseYear">Release Year</label></td>
+            <td><input type="number" th:field="*{releaseYear}" id="releaseYear" placeholder="Release Year"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label for="scienceIndex">Science Index</label></td>
+            <td><input type="number" th:field="*{scienceIndex}" id="scienceIndex" placeholder="Science Index"></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Add"></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<p><h3>---</h3></p>
+<p><a href="/backtoindex">Back to index</a></p>
+</body>
+</html>
