@@ -33,3 +33,4 @@ Total Price = Quantity * Price * Science Index.
 - JPA
 - thymeleaf
 - jakarta validation
+
