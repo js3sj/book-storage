@@ -1,6 +1,5 @@
 package com.assessment.controllers;
 
-import com.assessment.entities.Book;
 import com.assessment.services.BookService;
 import com.assessment.services.FormValidationService;
 import com.assessment.utils.Error;
@@ -12,9 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Comparator;
-import java.util.stream.Collectors;
 
 @Controller
 public class BookController {
@@ -61,11 +57,11 @@ public class BookController {
     }
 
     @PostMapping("/update/{barcode}")
-    public String updateBook(@PathVariable("barcode") long barcode, FormAttribute formAttribute,
+    public String updateBook(@PathVariable("barcode") long barcode, @Valid FormAttribute formAttribute,
                              BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             formAttribute.setBarcode(barcode);
-            return "edit/{barcode}";
+            return "update/update-book";
         }
 
         if (new FormValidationService().
