@@ -140,33 +140,15 @@ public class BookController {
 
     @GetMapping("/listbarcodesbyquantity")
     public String listBarcodesGroupedByQuantity(Model model) {
-        var resultList = bookService.findAll().stream()
-                .collect(Collectors.groupingBy(Book::getQuantity))
-                .values()
-                .stream()
-                .flatMap(m -> m.stream())
-                .map(Book::getBarcode)
-                .toList();
-
         model.addAttribute("description", new FormAttribute().getResultDescriptionForTheFirstGroup());
-        model.addAttribute("resultList", resultList);
+        model.addAttribute("resultList", bookService.getaListOfBarcodesGroupedByQuantity());
         return "list/list-result";
     }
 
     @GetMapping("/listbarcodesbyquantitysorted")
     public String listBarcodeGroupedByQuantityAndSorted(Model model) {
-        Comparator<Book> byTotalPrice = Comparator.comparingDouble(Book::getPrice);
-
-        var resultList = bookService.findAll().stream()
-                .collect(Collectors.groupingBy(Book::getQuantity))
-                .values()
-                .stream()
-                .flatMap(m -> m.stream().sorted(byTotalPrice))
-                .map(Book::getBarcode)
-                .toList();
-
         model.addAttribute("description", new FormAttribute().getResultDescriptionForTheSecondGroup());
-        model.addAttribute("resultList", resultList);
+        model.addAttribute("resultList", bookService.getListOfBarcodeGroupedByQuantityAndSorted());
         return "list/list-result";
     }
 

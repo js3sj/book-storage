@@ -7,8 +7,10 @@ import com.assessment.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -43,6 +45,28 @@ public class BookService {
         if (optional.isPresent())
             return optional.get();
         return null;
+    }
+
+    public List<Long> getaListOfBarcodesGroupedByQuantity() {
+        return this.findAll().stream()
+                .collect(Collectors.groupingBy(Book::getQuantity))
+                .values()
+                .stream()
+                .flatMap(m -> m.stream())
+                .map(Book::getBarcode)
+                .toList();
+    }
+
+    public List<Long> getListOfBarcodeGroupedByQuantityAndSorted() {
+        Comparator<Book> byTotalPrice = Comparator.comparingDouble(Book::getPrice);
+
+        return this.findAll().stream()
+                .collect(Collectors.groupingBy(Book::getQuantity))
+                .values()
+                .stream()
+                .flatMap(m -> m.stream().sorted(byTotalPrice))
+                .map(Book::getBarcode)
+                .toList();
     }
 
     public void loadTestData() {
