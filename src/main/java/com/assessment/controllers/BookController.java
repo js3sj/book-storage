@@ -1,7 +1,6 @@
 package com.assessment.controllers;
 
 import com.assessment.entities.Book;
-import com.assessment.repositories.BookRepository;
 import com.assessment.services.BookService;
 import com.assessment.services.FormValidationService;
 import com.assessment.utils.Error;
@@ -12,9 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -22,7 +20,7 @@ import java.util.stream.Collectors;
 public class BookController {
 
     @Autowired
-    BookService bookService;
+    private BookService bookService;
 
     @GetMapping("/addsamplebooks")
     public String addSampleBooks() {
@@ -63,7 +61,7 @@ public class BookController {
     }
 
     @PostMapping("/update/{barcode}")
-    public String updateBook(@PathVariable("barcode") long barcode, @Valid FormAttribute formAttribute,
+    public String updateBook(@PathVariable("barcode") long barcode, FormAttribute formAttribute,
                              BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             formAttribute.setBarcode(barcode);
@@ -147,8 +145,8 @@ public class BookController {
                 .values()
                 .stream()
                 .flatMap(m -> m.stream())
-                .map(x -> x.getBarcode())
-                .collect(Collectors.toList());
+                .map(Book::getBarcode)
+                .toList();
 
         model.addAttribute("description", new FormAttribute().getResultDescriptionForTheFirstGroup());
         model.addAttribute("resultList", resultList);
@@ -164,8 +162,8 @@ public class BookController {
                 .values()
                 .stream()
                 .flatMap(m -> m.stream().sorted(byTotalPrice))
-                .map(x -> x.getBarcode())
-                .collect(Collectors.toList());
+                .map(Book::getBarcode)
+                .toList();
 
         model.addAttribute("description", new FormAttribute().getResultDescriptionForTheSecondGroup());
         model.addAttribute("resultList", resultList);

@@ -11,7 +11,7 @@ public class ScienceJournal extends Book {
 
     @Min(value = 1, message = "Science index is mandatory, min value 1.")
     @Max(value = 10, message = "Science index is mandatory, max value 10")
-    private byte scienceIndex;
+    protected byte scienceIndex;
 
     public ScienceJournal() {}
 

@@ -47,13 +47,11 @@ public class FormAttribute {
         this.quantity = book.getQuantity();
         this.price = book.getPrice();
 
-        if (book instanceof AntiqueBook) {
-            this.releaseYear = ((AntiqueBook) book).getReleaseYear();
-        }
+        if (book instanceof AntiqueBook antiqueBook)
+            this.releaseYear = antiqueBook.getReleaseYear();
 
-        if (book instanceof ScienceJournal) {
-            this.scienceIndex = ((ScienceJournal) book).getScienceIndex();
-        }
+        if (book instanceof ScienceJournal scienceJournal)
+            this.scienceIndex = scienceJournal.getScienceIndex();
     }
 
     public <T extends Book> T buildNewBook() {
@@ -86,12 +84,12 @@ public class FormAttribute {
         List<FormAttribute> resultList = new ArrayList<>();
 
         listOfBook.forEach((obj) -> {
-            if (obj instanceof AntiqueBook) {
-                resultList.add(new FormAttribute((AntiqueBook) obj));
-            } else if (obj instanceof ScienceJournal) {
-                resultList.add(new FormAttribute((ScienceJournal) obj));
+            if (obj instanceof AntiqueBook antiqueBook) {
+                resultList.add(new FormAttribute(antiqueBook));
+            } else if (obj instanceof ScienceJournal scienceJournal) {
+                resultList.add(new FormAttribute(scienceJournal));
             } else {
-                resultList.add(new FormAttribute((Book) obj));
+                resultList.add(new FormAttribute(obj));
             }
         });
 

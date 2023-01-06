@@ -33,8 +33,8 @@
             <td th:text="${formAttribute.barcode}"></td>
             <td th:text="${formAttribute.quantity}"></td>
             <td th:text="${formAttribute.price}"></td>
-            <td th:text="${formAttribute?.releaseYear} ?:'---'"></td>
-            <td th:text="${formAttribute?.scienceIndex} ?:'---'"></td>
+            <td th:text="${formAttribute.releaseYear} ?:'---'"></td>
+            <td th:text="${formAttribute.scienceIndex} ?:'---'"></td>
             <td><a th:href="@{/edit/{barcode}(barcode=${formAttribute.barcode})}">Edit</a></td>
             <td><a th:href="@{/delete/{barcode}(barcode=${formAttribute.barcode})}">Delete</a></td>
         </tr>
