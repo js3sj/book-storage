@@ -12,7 +12,7 @@ public class AntiqueBook extends Book {
 
     @Min(value = 0)
     @Max(value = 1900, message = "Release year is mandatory, starting from 1900.")
-    private short releaseYear;
+    protected short releaseYear;
 
     public AntiqueBook() {}
 

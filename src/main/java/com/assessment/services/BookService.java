@@ -14,7 +14,7 @@ import java.util.Optional;
 public class BookService {
 
     @Autowired
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
 
     public <T extends Book> boolean save(T book) {
         if (bookRepository.findByBarcode(book.getBarcode()).isEmpty())

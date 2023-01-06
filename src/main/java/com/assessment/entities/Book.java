@@ -13,20 +13,20 @@ public class Book {
     private long id;
 
     @NotEmpty(message = "Name is mandatory")
-    private String name;
+    protected String name;
 
     @NotEmpty(message = "Author is mandatory")
-    private String author;
+    protected String author;
 
     @Min(value = 9780000000000L, message = "Barcode starts with 978... Length must be 13")
     @Max(value = 9789999999999L, message = "Barcode max value 9789999999999")
-    private long barcode;
+    protected long barcode;
 
     @Min(value = 1, message = "Quantity is mandatory, min 1")
-    private long quantity;
+    protected long quantity;
 
     @Min(value = 0, message = "Price is mandatory, min 0")
-    private double price;
+    protected double price;
 
     public Book() { }
 
